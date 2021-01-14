@@ -23,6 +23,9 @@ app.use(express.json());
 const blogRouter = require('./routes/blog');
 app.use('/', blogRouter);
 
+const ClienteRouter = require('./routes/clientes');
+app.use('/clientes', ClienteRouter);
+
 const SubirRouter = require('./routes/subir');
 app.use('/subir', SubirRouter)
 

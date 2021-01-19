@@ -27,8 +27,10 @@ const ClienteRouter = require('./routes/clientes');
 app.use('/clientes', ClienteRouter);
 
 const SubirRouter = require('./routes/subir');
-app.use('/subir', SubirRouter)
+app.use('/subir', SubirRouter);
 
+app.use('/usuarios', require('./routes/usuarios'))
+ 
 app.listen(3000, ()=>{
     console.log('SERVER ON');
 })

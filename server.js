@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+require('dotenv').config();
 // const multer = require('multer');
 // const upload = multer({dest:'public/img'});
 // const fs = require('fs');
@@ -30,6 +31,9 @@ const SubirRouter = require('./routes/subir');
 app.use('/subir', SubirRouter);
 
 app.use('/usuarios', require('./routes/usuarios'))
+
+const loginRouter = require('./routes/login');
+app.use('/login', loginRouter);
  
 app.listen(3000, ()=>{
     console.log('SERVER ON');

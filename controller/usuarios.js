@@ -1,6 +1,5 @@
-const express = require('express');
 const Usuario = require('../models/usuario');
-const {validationResult} = require('express-validator');
+const bcrypt = require('bcryptjs');
 
 const getUsuarios = async (req,res)=>{
     try{
@@ -15,13 +14,13 @@ const crearUsuarios = async(req,res)=>{
 
     const{email, password} = req.body;
   
-    const errores = validationResult(req) ;
-    if(!errores.isEmpty()){
-       return res.status(500).json({
-            ok:false,
-            error: errores.mapped()
-    });
-}
+//     const errores = validationResult(req) ;
+//     if(!errores.isEmpty()){
+//        return res.status(500).json({
+//             ok:false,
+//             error: errores.mapped()
+//     });
+// }
     
   
     try{
@@ -40,6 +39,12 @@ const crearUsuarios = async(req,res)=>{
         //Guardar el Usuario//
 
         const usuario = new Usuario(req.body)
+
+        //Encriptar Contraseña de Usuario//
+
+        const salt = bcrypt.genSaltSync();
+
+        usuario.password = bcrypt.hashSync(password,salt);
 
         await usuario.save();
 

@@ -26,10 +26,10 @@ const usuarioSchema = new mongoose.Schema({
 
 })
 
-// usuarioSchema.method('toJSON', function(){
-//     const{__v, _id, password} = this.toObject();
-//     object.identificador = _id;
-//     return object;
-// })
+ usuarioSchema.method('toJSON', function(){
+     const{__v, password, role,  ...object} = this.toObject();
+    
+    return object;
+ })
 
 module.exports = mongoose.model("Usuario", usuarioSchema);

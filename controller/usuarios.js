@@ -1,5 +1,6 @@
 const Usuario = require('../models/usuario');
 const bcrypt = require('bcryptjs');
+const {validationResult} = require('express-validator');
 
 const getUsuarios = async (req,res)=>{
     try{
